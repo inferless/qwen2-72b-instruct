@@ -1,6 +1,5 @@
 from vllm import LLM, SamplingParams
 from transformers import AutoTokenizer
-import os
 
 class InferlessPythonModel:
 

@@ -19,10 +19,6 @@ Get started by forking the repository. You can do this by clicking on the fork b
 
 This will create a copy of the repository in your own GitHub account, allowing you to make changes and customize it according to your needs.
 
-### Add Your Hugging Face Auth Token
-Go into the `app.py` and replace `<your_token>` with your hugging face api key. Make sure to check the repo is private to protect your hugging face key.
-
-
 ### Create a Custom Runtime in Inferless
 To access the custom runtime window in Inferless, simply navigate to the sidebar and click on the **Create new Runtime** button. A pop-up will appear.
 

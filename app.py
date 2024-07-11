@@ -38,4 +38,3 @@ class InferlessPythonModel:
 
     def finalize(self):
         self.llm = None
-        self.tokenizer = None

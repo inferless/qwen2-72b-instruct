@@ -1,6 +1,3 @@
-# 
- 
-
 # Tutorial - Deploy Qwen2-72B-Instruct using Inferless
 [Qwen2-72B-Instruct](https://huggingface.co/Qwen/Qwen2-72B-Instruct-AWQ) is a part of the Qwen2 series of large language models ranging from 0.5 to 72 billion parameters. The repository is for the 72B instruction-tuned model for deploying the model in the Inferless platform.
 
@@ -31,7 +28,31 @@ Log in to your inferless account, select the workspace you want the model to be 
 
 Select the PyTorch as framework and choose **Repo(custom code)** as your model source and select your provider, and use the forked repo URL as the **Model URL**.
 
-Enter all the required details to Import your model. Refer [this link](https://docs.inferless.com/integrations/github-custom-code) for more information on model import.
+Enter all the required details to Import your model. Refer [this link](https://docs.inferless.com/integrations/git-custom-code/git--custom-code) for more information on model import.
+
+---
+## Curl Command
+Following is an example of the curl command you can use to make inference. You can find the exact curl command in the Model's API page in Inferless.
+```bash
+curl --location '<your_inference_url>' \
+          --header 'Content-Type: application/json' \
+          --header 'Authorization: Bearer <your_api_key>' \
+          --data '{
+              "inputs": [
+                {
+                  "data": [
+                    "What is quantum computing?"
+                  ],
+                  "name": "prompt",
+                  "shape": [
+                    1
+                  ],
+                  "datatype": "BYTES"
+                }
+              ]
+            }
+            '
+```
 
 ---
 ## Customizing the Code
@@ -46,6 +67,11 @@ def infer(self, inputs):
     prompt = inputs["prompt"]
 ```
 
-**Finalize** - This function is used to perform any cleanup activity for example you can unload the model from the gpu by setting `self.llm = None`.
+**Finalize** - This function is used to perform any cleanup activity for example you can unload the model from the gpu by setting to `None`.
+```python
+def finalize(self):
+    self.llm = None
+```
+
 
 For more information refer to the [Inferless docs](https://docs.inferless.com/).

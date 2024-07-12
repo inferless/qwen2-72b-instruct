@@ -28,5 +28,11 @@ INPUT_SCHEMA = {
         'required': True,
         'shape': [1],
         'example': [512]
+    },
+    "top_k":{
+        'datatype': 'INT8',
+        'required': True,
+        'shape': [1],
+        'example': [40]
     }
 }

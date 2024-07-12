@@ -18,7 +18,6 @@ class InferlessPythonModel:
         repetition_penalty = inputs["repetition_penalty"]
         top_k = inputs["top_k"]
         max_tokens = inputs["max_tokens"]
-        top_k = inputs["top_k"]
 
         # Define sampling parameters for model generation
         # You can set max_tokens to 1024 for complete answer to your question

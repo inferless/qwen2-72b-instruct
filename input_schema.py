@@ -24,7 +24,7 @@ INPUT_SCHEMA = {
         'example': [1.18]
     },
     "max_tokens": {
-        'datatype': 'INT8',
+        'datatype': 'INT16',
         'required': True,
         'shape': [1],
         'example': [512]

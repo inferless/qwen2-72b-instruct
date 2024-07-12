@@ -3,7 +3,7 @@ INPUT_SCHEMA = {
         'datatype': 'STRING',
         'required': True,
         'shape': [1],
-        'example': ["What is quantum computing?"]
+        'example': ["What is deep meaning?"]
     },
     "temperature": {
         'datatype': 'FP32',

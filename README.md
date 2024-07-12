@@ -35,23 +35,49 @@ Enter all the required details to Import your model. Refer [this link](https://d
 Following is an example of the curl command you can use to make inference. You can find the exact curl command in the Model's API page in Inferless.
 ```bash
 curl --location '<your_inference_url>' \
-          --header 'Content-Type: application/json' \
-          --header 'Authorization: Bearer <your_api_key>' \
-          --data '{
-              "inputs": [
-                {
-                  "data": [
-                    "What is quantum computing?"
-                  ],
-                  "name": "prompt",
-                  "shape": [
-                    1
-                  ],
-                  "datatype": "BYTES"
-                }
-              ]
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer <your_api_key>' \
+    --data '{
+        "inputs": [
+            {
+                "name": "prompt",
+                "shape": [1],
+                "data": ["What is deep learning?"],
+                "datatype": "BYTES"
+            },
+            {
+                "name": "temperature",
+                "shape": [1],
+                "data": [0.7],
+                "datatype": "FP32"
+            },
+            {
+                "name": "top_p",
+                "shape": [1],
+                "data": [0.1],
+                "datatype": "FP32"
+            },
+            {
+                "name": "repetition_penalty",
+                "shape": [1],
+                "data": [1.18],
+                "datatype": "FP32"
+            },
+            {
+                "name": "max_tokens",
+                "shape": [1],
+                "data": [512],
+                "datatype": "INT16"
+            },
+            {
+                "name": "top_k",
+                "shape": [1],
+                "data": [40],
+                "datatype": "INT8"
             }
-            '
+        ]
+    }'
+
 ```
 
 ---

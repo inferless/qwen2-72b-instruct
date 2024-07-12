@@ -90,7 +90,12 @@ Open the `app.py` file. This contains the main code for inference. It has three 
 
 ```python
 def infer(self, inputs):
-    prompt = inputs["prompt"]
+    prompts = inputs["prompt"]
+    temperature = inputs["temperature"]
+    top_p = inputs["top_p"]
+    repetition_penalty = inputs["repetition_penalty"]
+    top_k = inputs["top_k"]
+    max_tokens = inputs["max_tokens"]
 ```
 
 **Finalize** - This function is used to perform any cleanup activity for example you can unload the model from the gpu by setting to `None`.

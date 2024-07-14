@@ -7,20 +7,19 @@ class InferlessPythonModel:
         model_id = "Qwen/Qwen2-72B-Instruct-AWQ"  # Specify the model repository ID
         # Initialize the LLM object with the downloaded model directory
         self.llm = LLM(model=model_id, enforce_eager=True, quantization="AWQ")
-
+        
         # Load the tokenizer associated with the pre-trained model
         self.tokenizer = AutoTokenizer.from_pretrained(model_id)
 
     def infer(self, inputs):
         prompts = inputs["prompt"]  # Extract the prompt from the input
-        temperature = inputs["temperature"]
-        top_p = inputs["top_p"]
-        repetition_penalty = inputs["repetition_penalty"]
-        top_k = inputs["top_k"]
-        max_tokens = inputs["max_tokens"]
+        temperature = inputs.get("temperature",0.7)
+        top_p = inputs.get("top_p",0.1)
+        repetition_penalty = inputs.get("repetition_penalty",1.18)
+        top_k = inputs.get("top_k",40)
+        max_tokens = inputs.get("max_tokens",512)
 
         # Define sampling parameters for model generation
-        # You can set max_tokens to 1024 for complete answer to your question
         sampling_params = SamplingParams(temperature=temperature,top_p=top_p,repetition_penalty=repetition_penalty,
                                          top_k=top_k,max_tokens=max_tokens)
         # Apply the chat template and convert to a list of strings (without tokenization)

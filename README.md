@@ -38,46 +38,50 @@ curl --location '<your_inference_url>' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer <your_api_key>' \
     --data '{
-        "inputs": [
-            {
-                "name": "prompt",
-                "shape": [1],
-                "data": ["What is deep learning?"],
-                "datatype": "BYTES"
-            },
-            {
-                "name": "temperature",
-                "shape": [1],
-                "data": [0.7],
-                "datatype": "FP32"
-            },
-            {
-                "name": "top_p",
-                "shape": [1],
-                "data": [0.1],
-                "datatype": "FP32"
-            },
-            {
-                "name": "repetition_penalty",
-                "shape": [1],
-                "data": [1.18],
-                "datatype": "FP32"
-            },
-            {
-                "name": "max_tokens",
-                "shape": [1],
-                "data": [512],
-                "datatype": "INT16"
-            },
-            {
-                "name": "top_k",
-                "shape": [1],
-                "data": [40],
-                "datatype": "INT8"
-            }
-        ]
+      "inputs": [
+        {
+          "name": "prompt",
+          "shape": [1],
+          "data": ["What is deep meaning?"],
+          "datatype": "BYTES"
+        },
+        {
+          "name": "temperature",
+          "optional": true,
+          "shape": [1],
+          "data": [0.7],
+          "datatype": "FP32"
+        },
+        {
+          "name": "top_p",
+          "optional": true,
+          "shape": [1],
+          "data": [0.1],
+          "datatype": "FP32"
+        },
+        {
+          "name": "repetition_penalty",
+          "optional": true,
+          "shape": [1],
+          "data": [1.18],
+          "datatype": "FP32"
+        },
+        {
+          "name": "max_tokens",
+          "optional": true,
+          "shape": [1],
+          "data": [512],
+          "datatype": "INT16"
+        },
+        {
+          "name": "top_k",
+          "optional": true,
+          "shape": [1],
+          "data": [40],
+          "datatype": "INT8"
+        }
+      ]
     }'
-
 ```
 
 ---
@@ -91,11 +95,11 @@ Open the `app.py` file. This contains the main code for inference. It has three 
 ```python
 def infer(self, inputs):
     prompts = inputs["prompt"]
-    temperature = inputs["temperature"]
-    top_p = inputs["top_p"]
-    repetition_penalty = inputs["repetition_penalty"]
-    top_k = inputs["top_k"]
-    max_tokens = inputs["max_tokens"]
+    temperature = inputs.get("temperature",0.7)
+    top_p = inputs.get("top_p",0.1)
+    repetition_penalty = inputs.get("repetition_penalty",1.18)
+    top_k = inputs.get("top_k",40)
+    max_tokens = inputs.get("max_tokens",512)
 ```
 
 **Finalize** - This function is used to perform any cleanup activity for example you can unload the model from the gpu by setting to `None`.
